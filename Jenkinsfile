@@ -11,8 +11,6 @@ pipeline {
             }
             steps {
                 sh '''
-
-
                    ls -la
                    node --version
                      npm --version
@@ -22,5 +20,16 @@ pipeline {
                 '''
             }
         }
+            stage('Test') {
+                steps {
+                    sh '''
+                    echo "Running tests..."
+                   
+                            npm run test
+                        
+                    '''
+                }
+
+
     }
 }
