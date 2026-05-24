@@ -38,7 +38,11 @@ pipeline {
                         
                     '''
                     }
-
+                    post {
+                        always {
+                            junit 'jest-results/junit.xml'
+                        }
+                    }
 
                 }
 
@@ -58,17 +62,16 @@ pipeline {
                         
                     '''
                     }
-
+                    post {
+                        always {
+                            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playerwright HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                        }
+                    }
 
                 }
             }
         }
 
     }
-    post {
-        always {
-            junit 'jest-results/junit.xml'
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playerwright HTML Report', reportTitles: '', useWrapperFileDirectly: true])
-        }
-    }
+
 }
